@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use "@angular/material" as mat;
+@use "@ngxpert/hot-toast/src/styles/styles.scss";
+
+@include mat.core();
+
+html, body { 
+    height: 100%; 
+    color-scheme: light;
+    @include mat.theme((
+        color: mat.$violet-palette,
+        typography: Roboto,
+        density: 0
+  ));
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+body.dark-mode {
+    color-scheme: dark;
+  }
+  

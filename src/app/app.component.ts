@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LayoutComponent } from './layout/layout.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, LayoutComponent],
   template: `
-    <h1>Welcome to {{title}}!</h1>
+  <app-layout>
+    <h1>Welcome to {{ title }}!</h1>
+    <p>This is a sample Angular Material application with dark mode support.</p>
+  </app-layout>
 
-    <router-outlet />
+  <router-outlet />
   `,
   styles: [],
 })
