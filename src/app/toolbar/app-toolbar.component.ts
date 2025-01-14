@@ -6,6 +6,7 @@ import { ThemeService } from '../theme.service';
 import { AsyncPipe } from '@angular/common';
 import { UserMenuComponent } from '../user-menu/user-menu.component';
 import { SidenavService } from '../services/side-nav.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-toolbar',

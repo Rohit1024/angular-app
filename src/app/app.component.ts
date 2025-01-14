@@ -7,11 +7,8 @@ import { LayoutComponent } from './layout/layout.component';
   imports: [RouterOutlet, LayoutComponent],
   template: `
   <app-layout>
-    <h1>Welcome to {{ title }}!</h1>
-    <p>This is a sample Angular Material application with dark mode support.</p>
-  </app-layout>
-
   <router-outlet />
+  </app-layout>
   `,
   styles: [],
 })

@@ -4,11 +4,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule, AsyncPipe } from '@angular/common';
 import { SidenavService } from '../services/side-nav.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [CommonModule, MatSidenavModule, MatListModule, MatIconModule, AsyncPipe],
+  imports: [CommonModule, MatSidenavModule, MatListModule, MatIconModule, AsyncPipe, RouterLink],
   template: `
     <mat-sidenav-container>
       <mat-sidenav #sidenav [opened]="sidenavService.isOpen$ | async" [mode]="'side'" class="sidenav">
@@ -17,9 +18,13 @@ import { SidenavService } from '../services/side-nav.service';
           <span class="brand-text">MyApp</span>
         </div>
         <mat-nav-list>
-          <a mat-list-item>
+          <a mat-list-item routerLink="/dashboard">
             <mat-icon matListItemIcon>dashboard</mat-icon>
             <span matListItemTitle>Dashboard</span>
+          </a>
+          <a mat-list-item routerLink="/docs">
+            <mat-icon matListItemIcon>description</mat-icon>
+            <span matListItemTitle>Docs</span>
           </a>
           <a mat-list-item>
             <mat-icon matListItemIcon>person</mat-icon>
@@ -29,9 +34,13 @@ import { SidenavService } from '../services/side-nav.service';
             <mat-icon matListItemIcon>account_circle</mat-icon>
             <span matListItemTitle>Account</span>
           </a>
-          <a mat-list-item>
-            <mat-icon matListItemIcon>attach_money</mat-icon>
-            <span matListItemTitle>Pricing</span>
+          <a mat-list-item routerLink="/auth/signin">
+            <mat-icon matListItemIcon>login</mat-icon>
+            <span matListItemTitle>Sign In</span>
+          </a>
+          <a mat-list-item routerLink="/auth/signup">
+            <mat-icon matListItemIcon>person_add</mat-icon>
+            <span matListItemTitle>Sign Up</span>
           </a>
         </mat-nav-list>
       </mat-sidenav>
