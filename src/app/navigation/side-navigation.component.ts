@@ -2,17 +2,17 @@ import { Component, inject } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule, AsyncPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { SidenavService } from '../services/side-nav.service';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [CommonModule, MatSidenavModule, MatListModule, MatIconModule, AsyncPipe, RouterLink],
+  imports: [CommonModule, MatSidenavModule, MatListModule, MatIconModule, RouterLink],
   template: `
     <mat-sidenav-container>
-      <mat-sidenav #sidenav [opened]="sidenavService.isOpen$ | async" [mode]="'side'" class="sidenav">
+      <mat-sidenav #sidenav [opened]="sidenavService.isOpenComputed()" [mode]="'side'" class="sidenav">
         <div class="brand-logo">
           <mat-icon class="logo-icon">widgets</mat-icon>
           <span class="brand-text">MyApp</span>
@@ -44,7 +44,7 @@ import { RouterLink } from '@angular/router';
           </a>
         </mat-nav-list>
       </mat-sidenav>
-      <mat-sidenav-content [style.marginLeft]="(sidenavService.isOpen$ | async) ? '200px' : '0'">
+      <mat-sidenav-content [style.marginLeft]="sidenavService.isOpenComputed() ? '200px' : '0'">
         <ng-content></ng-content>
       </mat-sidenav-content>
     </mat-sidenav-container>

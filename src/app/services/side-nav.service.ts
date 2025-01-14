@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, computed, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SidenavService {
-  private isOpen = new BehaviorSubject<boolean>(true);
-  isOpen$ = this.isOpen.asObservable();
+  private isOpen = signal<boolean>(true);
+  isOpenComputed = computed(() => this.isOpen());
 
   toggle() {
-    this.isOpen.next(!this.isOpen.value);
+    this.isOpen.update(() => !this.isOpen())
   }
 }

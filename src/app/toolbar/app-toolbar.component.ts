@@ -6,7 +6,6 @@ import { ThemeService } from '../theme.service';
 import { AsyncPipe } from '@angular/common';
 import { UserMenuComponent } from '../user-menu/user-menu.component';
 import { SidenavService } from '../services/side-nav.service';
-import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-toolbar',
@@ -14,7 +13,6 @@ import { RouterLink } from '@angular/router';
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
-        AsyncPipe,
         UserMenuComponent
     ],
     template: `
@@ -22,10 +20,10 @@ import { RouterLink } from '@angular/router';
       <button mat-icon-button (click)="toggleSidenav()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>My Angular Material App</span>
+      <span>Demo App</span>
       <span style="flex: 1 1 auto;"></span>
       <button mat-icon-button (click)="toggleDarkMode()">
-        <mat-icon>{{ (themeService.darkMode$ | async) ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        <mat-icon>{{ themeService.isDarkMode() ? 'dark_mode' : 'light_mode' }}</mat-icon>
       </button>
       <app-user-menu></app-user-menu>
     </mat-toolbar>

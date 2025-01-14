@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, computed, signal } from '@angular/core';
 
 const THEME_KEY = 'app-theme-preference';
 
@@ -7,8 +6,8 @@ const THEME_KEY = 'app-theme-preference';
   providedIn: 'root'
 })
 export class ThemeService {
-  private darkMode = new BehaviorSubject<boolean>(this.getStoredThemePreference());
-  darkMode$ = this.darkMode.asObservable();
+  private darkMode = signal<boolean>(this.getStoredThemePreference());
+  darkModeComputed = computed(() => this.darkMode());
 
   constructor() {
     this.initializeTheme();
@@ -20,7 +19,7 @@ export class ThemeService {
   }
 
   private initializeTheme(): void {
-    if (this.darkMode.value) {
+    if (this.darkMode()) {
       document.body.classList.add('dark-mode');
     } else {
       document.body.classList.remove('dark-mode');
@@ -28,8 +27,8 @@ export class ThemeService {
   }
 
   toggleDarkMode(): void {
-    const newValue = !this.darkMode.value;
-    this.darkMode.next(newValue);
+    const newValue = !this.darkMode();
+    this.darkMode.set(newValue);
     localStorage.setItem(THEME_KEY, JSON.stringify(newValue));
     
     if (newValue) {
@@ -40,6 +39,6 @@ export class ThemeService {
   }
 
   isDarkMode(): boolean {
-    return this.darkMode.value;
+    return this.darkMode();
   }
 }
